@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1439542066 source:c:\users\manuelag\documents\github\programacion-orientada-objetos-en-c-\ejercicios\poo_c++\mi primer proyecto\algebra\main.cpp
+	"polinomy.h"
+
+1439543257 c:\users\manuelag\documents\github\programacion-orientada-objetos-en-c-\ejercicios\poo_c++\mi primer proyecto\algebra\polinomy.h
+	"monomy.h"
+
+1439542658 c:\users\manuelag\documents\github\programacion-orientada-objetos-en-c-\ejercicios\poo_c++\mi primer proyecto\algebra\monomy.h
+	<iostream>
+	<vector>
+	<stdlib.h>
+	<fstream>
+	<math.h>
+
