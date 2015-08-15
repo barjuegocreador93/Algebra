@@ -186,6 +186,7 @@ polinomy polinomy::operator+(const polinomy &a)
     r.oper();
     return r;
 }
+
 polinomy polinomy::operator-(const polinomy &a)
 {
     polinomy m, r;

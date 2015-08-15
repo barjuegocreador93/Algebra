@@ -5,7 +5,7 @@ int main()
  a.getMonomy(1,"x",3);
 
  b.getMonomy(1,"x",2);
- b.getMonomy(2,"x",6);
+ b.getMonomy(2,"x",frac(4,6));
 
 c=(a+a)/b;
 

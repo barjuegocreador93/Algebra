@@ -5,6 +5,11 @@
 #include<math.h>
 using namespace std;
 char * _cls="cls";
+double frac(double a,double b)
+{
+    return a/b;
+}
+
 class polinomy;
 class monomy
 {
@@ -20,7 +25,6 @@ class monomy
         monomy &operator =(const monomy &other) ;
         monomy pow_(const double exp);
         monomy operator *(const monomy &other);
-
     private:
         double num;
         vector<string> lit;
@@ -33,6 +37,7 @@ monomy::monomy()
 {
 
 }
+
 void monomy::get(double numer,string liter, double exps)
 {
     num=numer;
@@ -111,7 +116,6 @@ void monomy::oper()
                     lit.erase(lit.begin()+j);
                     j--;
                 }
-
         }
 
         }
@@ -206,8 +210,6 @@ void monomy::integ(string var)
         exp.push_back(1.0);
     }
     oper();
-
-
 }
 
 bool monomy::operator ==(monomy &other)
