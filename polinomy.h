@@ -4,17 +4,18 @@ class polinomy
     public:
         polinomy();
         void make(string tip_num);
-        void getMonomy(float,string,float);
+        void getMonomy(double,string,double);
         void oper();
         void der(string var);
         void integ(string var);
         void print();
         void eraseMonomy(monomy &a);
+        polinomy pow_(double a);
         polinomy &operator=(const polinomy &);
         polinomy operator*(const polinomy &);
-
-
-
+        polinomy operator/(const polinomy &);
+        polinomy operator+(const polinomy &);
+        polinomy operator-(const polinomy &);
     private:
         vector<monomy> alg;
 };
@@ -68,6 +69,7 @@ void polinomy::oper()
 
 void polinomy::print()
 {
+
     for(int i=0;i<alg.size();i++)
     {
         if(alg[i].num>0&&i!=0)cout<<"+";
@@ -106,7 +108,7 @@ void polinomy::integ(string var)
 
 }
 
-void polinomy::getMonomy(float num,string var,float exp)
+void polinomy::getMonomy(double num,string var,double exp)
 {
     monomy j;
     j.get(num,var,exp);
@@ -148,4 +150,51 @@ void polinomy::eraseMonomy(monomy &a)
             alg.erase(alg.begin()+i);
         }
     }
+}
+
+polinomy polinomy::pow_(double a)
+{
+    polinomy b;
+    for(int i=0;i<alg.size();i++)
+    {
+        monomy x;
+        x=alg[i].pow_(a);
+        b.alg.push_back(x);
+    }
+    return b;
+}
+
+
+
+polinomy polinomy::operator/(const polinomy &a)
+{
+    polinomy b, r;
+    b=a;
+    r=*this*b.pow_(-1);
+    r.oper();
+    return r;
+}
+
+polinomy polinomy::operator+(const polinomy &a)
+{
+    polinomy r;
+    r=*this;
+    for(int i=0;i<a.alg.size();i++)
+    {
+        r.alg.push_back(a.alg[i]);
+    }
+    r.oper();
+    return r;
+}
+polinomy polinomy::operator-(const polinomy &a)
+{
+    polinomy m, r;
+    m=a;
+    for(int i=0;i<m.alg.size();i++)
+    {
+        m.alg[i].num=m.alg[i].num*-1;
+    }
+    r=*this+m;
+    r.oper();
+    return r;
 }

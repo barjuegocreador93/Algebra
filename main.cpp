@@ -2,18 +2,17 @@
 int main()
 {
  polinomy a, b, c;
- a.getMonomy(1,"x",0);
- a.getMonomy(3,"x",1);
+ a.getMonomy(1,"x",3);
+
  b.getMonomy(1,"x",2);
+ b.getMonomy(2,"x",6);
 
-    c=a*b;
-    c.print();cout<<"\n";
-    c.integ("x");
+c=(a+a)/b;
 
-
-
- c.print();cout<<"\n";
-c.der("x");
+cout<<"F[x] =  ";c.print();cout<<"\n";
+cout<<"|F[x]dx =  ";c.integ("x");
+c.print();cout<<"\n";
+cout<<"[|F[x]dx]/dx =   ";c.der("x");
 c.print();cout<<"\n";
     return 0;
 }

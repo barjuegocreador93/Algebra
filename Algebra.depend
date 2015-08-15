@@ -12,3 +12,16 @@
 	<fstream>
 	<math.h>
 
+1439664458 source:d:\repositories\algebra\main.cpp
+	"polinomy.h"
+
+1439664516 d:\repositories\algebra\polinomy.h
+	"monomy.h"
+
+1439664608 d:\repositories\algebra\monomy.h
+	<iostream>
+	<vector>
+	<stdlib.h>
+	<fstream>
+	<math.h>
+

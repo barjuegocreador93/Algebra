@@ -10,7 +10,7 @@ class monomy
 {
     public:
         monomy();
-        void get(float,string,float);
+        void get(double,string,double);
         void make(string tipo_num);
         void print();
         void oper();
@@ -18,13 +18,13 @@ class monomy
         void integ(string var);
         bool operator ==(monomy &other);
         monomy &operator =(const monomy &other) ;
-        monomy operator *(float exp);
+        monomy pow_(const double exp);
         monomy operator *(const monomy &other);
 
     private:
-        float num;
+        double num;
         vector<string> lit;
-        vector<float> exp;
+        vector<double> exp;
         friend class polinomy;
 
 };
@@ -33,7 +33,7 @@ monomy::monomy()
 {
 
 }
-void monomy::get(float numer,string liter, float exps)
+void monomy::get(double numer,string liter, double exps)
 {
     num=numer;
     lit.push_back(liter);
@@ -43,14 +43,14 @@ void monomy::get(float numer,string liter, float exps)
 
 void monomy::make(string tipo_num)
 {
-    if("float"==tipo_num)
+    if("double"==tipo_num)
     {
         cout<<"Enter the number of your monomy: ";
         cin>>num;
     }else
     if("racional"==tipo_num)
     {
-        float a,b;
+        double a,b;
         cout<<"Entrar numerador: ";
         cin>>a;
         cout<<"Entrar denominador: ";
@@ -67,7 +67,7 @@ void monomy::make(string tipo_num)
         if(x=='x')
         {
             string aux1;
-            float aux2;
+            double aux2;
             system(_cls);
             cout<<"Diga el nombre de la variable nueva: ";
             cin>>aux1;
@@ -84,7 +84,7 @@ void monomy::make(string tipo_num)
 
 void monomy::print()
 {
-    if(num!=1)cout<<num;
+    if(num!=1||lit.size()==0)cout<<num;
     for(int i=0;i<lit.size();i++)
     {
            cout<<"["<<lit[i];
@@ -160,13 +160,17 @@ void monomy::der(string var)
 
 
 
-monomy monomy::operator *(float exps)
+monomy monomy::pow_(const double exps)
 {
-    num=pow(num,exps);
+    monomy a;
+    a.num=pow(num,exps);
     for(int i=0;i<lit.size();i++)
     {
-        exp[i]=exp[i]*exps;
+        double m=exp[i]*exps;
+        a.lit.push_back(lit[i]);
+        a.exp.push_back(m);
     }
+    return a;
 }
 
 monomy monomy::operator *(const monomy &other)
@@ -185,10 +189,7 @@ monomy monomy::operator *(const monomy &other)
         t.lit.push_back(lit[i]);
         t.exp.push_back(exp[i]);
     }
-
-
     t.oper();
-
     return  t;
 }
 
