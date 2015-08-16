@@ -18,7 +18,6 @@ class monomy
         void get(double,string,double);
         void make(string tipo_num);
         void print();
-        void oper();
         void der(string var);
         void integ(string var);
         bool operator ==(monomy &other);
@@ -26,6 +25,7 @@ class monomy
         monomy pow_(const double exp);
         monomy operator *(const monomy &other);
     private:
+        void oper();
         double num;
         vector<string> lit;
         vector<double> exp;
@@ -214,13 +214,28 @@ void monomy::integ(string var)
 
 bool monomy::operator ==(monomy &other)
 {
+    oper();
+    other.oper();
     if(lit.size()==other.lit.size())
     {
+        int p[lit.size()];
+
         for(int i=0;i<lit.size();i++)
         {
-            if(lit[i]!=other.lit[i])return 0;
-            if(exp[i]!=other.exp[i])return 0;
+           for(int j=0;j<other.lit.size();j++)
+           {
+               if(lit[i]==other.lit[j])
+               {
+                   p[i]+=1;
+               }
+           }
         }
+        int s=0;
+        for(int i=0;i<lit.size();i++)
+        {
+            s+=p[i];
+        }
+        if(s!=lit.size())return 0;
         return 1;
     }
     return 0;

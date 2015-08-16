@@ -18,6 +18,7 @@ class polinomy
         polinomy operator-(const polinomy &);
     private:
         vector<monomy> alg;
+
 };
 
 polinomy::polinomy()

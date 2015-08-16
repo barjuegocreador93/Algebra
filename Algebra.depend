@@ -12,13 +12,13 @@
 	<fstream>
 	<math.h>
 
-1439674795 source:d:\repositories\algebra\main.cpp
+1439676345 source:d:\repositories\algebra\main.cpp
 	"polinomy.h"
 
-1439673531 d:\repositories\algebra\polinomy.h
+1439677196 d:\repositories\algebra\polinomy.h
 	"monomy.h"
 
-1439674840 d:\repositories\algebra\monomy.h
+1439703482 d:\repositories\algebra\monomy.h
 	<iostream>
 	<vector>
 	<stdlib.h>
