@@ -6,7 +6,7 @@ Primero debe tener un IDE como [Code::Blocks](http://sourceforge.net/projects/co
 
 Luego debe instalarlo. y descargar el repositorio este [algebra](https://github.com/barjuegocreador93/Algebra/archive/master.zip)
 
-Luego abrir el archivo `Algebra.cbp` y verificar en el el archivo `monomy.h` la variable `char * _cls` este igualada a "cls"
+Luego abrir el archivo `Algebra.cbp` y verificar en el el archivo `monomy.h` la variable `char * _cls` este igualada a `"cls"`
 
 
 ## Para linux:
@@ -24,6 +24,8 @@ Luego
 
 instala el IDE code::blocks que esta en centro apps de ubuntu 
 o si tienes otro sistema de linux mira [aquí](http://www.codeblocks.org/downloads/26).
+
+Luego abrir el archivo `Algebra.cbp` y verificar en el el archivo `monomy.h` la variable `char * _cls` este igualada a `"clear"`
 
 
 
