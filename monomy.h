@@ -214,6 +214,7 @@ void monomy::integ(string var)
 
 bool monomy::operator ==(monomy &other)
 {
+    //ok
     oper();
     other.oper();
     if(lit.size()==other.lit.size())
