@@ -1,10 +1,19 @@
 #include<iostream>//Libreria principal
 #include<vector>//libreria de listas
+#include<string.h>
 #include<stdlib.h>//libreria de system();
 #include<fstream>
 #include<math.h>
 using namespace std;
-char * _cls="cls";
+char * strtochr(string a)
+{
+    char * x= new char[a.length()+1];
+    strcpy(x, a.c_str());
+    return x;
+}
+
+
+char * _cls=strtochr("clear");
 double frac(double a,double b)
 {
     return a/b;
@@ -201,8 +210,12 @@ void monomy::integ(string var)
 {
     for(int i=0;i<lit.size();i++)
     {
-        exp[i]=exp[i]+1;
-        num=num/exp[i];
+        if(var==lit[i])
+        {
+            exp[i]=exp[i]+1;
+            num=num/exp[i];
+        }
+
     }
     if(num!=0.0&&lit.size()==0)
     {

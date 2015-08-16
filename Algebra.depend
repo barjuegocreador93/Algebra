@@ -25,3 +25,17 @@
 	<fstream>
 	<math.h>
 
+1439761668 source:/home/barc/Documentos/Repositories/Algebra/main.cpp
+	"polinomy.h"
+
+1439760293 /home/barc/Documentos/Repositories/Algebra/polinomy.h
+	"monomy.h"
+
+1439761786 /home/barc/Documentos/Repositories/Algebra/monomy.h
+	<iostream>
+	<vector>
+	<string.h>
+	<stdlib.h>
+	<fstream>
+	<math.h>
+
