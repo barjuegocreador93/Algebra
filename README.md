@@ -2,16 +2,16 @@
 # Instalacion
 
 ## Para windows: 
-primero debe tener un IDE como [Code::Blocks](http://sourceforge.net/projects/codeblocks/files/Binaries/13.12/Windows/codeblocks-13.12mingw-setup.exe/download)
+Primero debe tener un IDE como [Code::Blocks](http://sourceforge.net/projects/codeblocks/files/Binaries/13.12/Windows/codeblocks-13.12mingw-setup.exe/download)
 
 Luego debe instalarlo. y descargar el repositorio este [algebra](https://github.com/barjuegocreador93/Algebra/archive/master.zip)
 
-luego abrir el archivo `Algebra.cbp` y verificar en el el archivo `monomy.h` la variable `char * _cls` este igualada a "cls"
+Luego abrir el archivo `Algebra.cbp` y verificar en el el archivo `monomy.h` la variable `char * _cls` este igualada a "cls"
 
 
 ## Para linux:
 
-Tener intalado g++:
+Tener instalado g++:
 
 `sudo apt-get install g++`
 
