@@ -20,7 +20,7 @@ Si no tienes git
 
 Luego
 
-`git push https://github.com/barjuegocreador93/Algebra.git `
+`git clone https://github.com/barjuegocreador93/Algebra.git `
 
 instala el IDE code::blocks que esta en centro apps de ubuntu 
 o si tienes otro sistema de linux mira [aquí](http://www.codeblocks.org/downloads/26).
