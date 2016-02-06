@@ -18,7 +18,7 @@ class monomy
         void integ(string var);
         bool operator ==(monomy &other);
         monomy &operator =(const monomy &other) ;
-        monomy MulexpforScalar(float exp) const;
+        monomy pow_(float exp) const;
         monomy operator *(const monomy &other);
         monomy operator /(const monomy &other);
 
@@ -161,7 +161,7 @@ void monomy::der(string var)
 
 
 
- monomy monomy::MulexpforScalar(float exps)const
+ monomy monomy::pow_(float exps)const
 {
     monomy x;
     x=*this;
@@ -203,7 +203,7 @@ monomy monomy::operator /(const monomy &other)
     t.num=num;
     t.exp=exp;
     t.lit=lit;
-    t=t * other.MulexpforScalar(-1);
+    t=t * other.pow_(-1);
 
     return  t;
 }
