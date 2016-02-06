@@ -1,16 +1,52 @@
 #include<iostream>//Libreria principal
-#include<vector>//libreria de listas
-#include<stdlib.h>//libreria de system();
 #include<fstream>
+#include<vector>
+#include<stdlib.h>
+#include<string.h>
+#include <string>
+#include <sstream>
 #include<math.h>
+
 using namespace std;
+
+
 char * _cls="clear";
+
+vector<string> split(const string & str, char x)
+{
+  vector<string> r;
+  string s="";
+
+   for(int i=0;i<str.length();i++)
+   {
+
+        if(str[i]==x||i==str.length()-1)
+        {
+            if(i==str.length()-1)
+            {
+                s+=str[i];
+            }
+            r.push_back(s);
+            s="";
+        }else s+=str[i];
+   }
+
+    return r;
+}
+
+char * strTochar(string a)
+{
+    char * x=new char[a.length()+1];
+    strcpy(x,a.c_str());
+    return x;
+}
+
 class polinomy;
 class monomy
 {
     public:
         monomy();
-        void get(float,string,float);
+        void get(float,string);
         void make(string tipo_num);
         void print();
         void oper();
@@ -34,11 +70,19 @@ monomy::monomy()
 {
 
 }
-void monomy::get(float numer,string liter, float exps)
+void monomy::get(float numer,string vars)
 {
     num=numer;
-    lit.push_back(liter);
-    exp.push_back(exps);
+    vector<string>l=split(vars,'*');
+    for(int i=0;i<l.size();i++)
+    {
+
+       vector<string>x=split(l[i],',');
+       lit.push_back(x[0]);
+       float z=atof(strTochar(x[1]));
+       exp.push_back(z);
+    }
+
     oper();
 }
 
@@ -113,7 +157,14 @@ void monomy::oper()
                     j--;
                 }
 
+
         }
+        if(exp[i]==0)
+                {
+                    exp.erase(exp.begin()+i);
+                    lit.erase(lit.begin()+i);
+                    i--;
+                }
 
         }
     }
