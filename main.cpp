@@ -1,11 +1,11 @@
 #include "polinomy.h"
-int main(){
+int main()
+{
+ polinomy a, b, c;
 
-polinomy a, b, c;
-a.getMonomy(1,"u",-0.5);
-a.getMonomy(2,"x",3);
-a.integ("u");
-a.print();
-return 0;
-
+ a.setMonomy(1,"x",3);
+ b.setMonomy(1,"x",3);
+ c=a/b;
+ c.print();
+    return 0;
 }
