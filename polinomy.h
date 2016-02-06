@@ -1,13 +1,16 @@
 #include "monomy.h"
+
+
+
 class polinomy
 {
     public:
         polinomy();
         void make(string tip_num);
-        void setMonomy(float,string,float);
+        void setMonomy(float,string);
         void oper();
-        void der(string var);
-        void integ(string var);
+        polinomy der(string var)const;
+        polinomy integ(string var)const;
         void print();
         void eraseMonomy(monomy &a);
         polinomy &operator=(const polinomy &);
@@ -62,6 +65,7 @@ void polinomy::oper()
                     alg.erase(alg.begin()+j);
                     j--;
                 }
+
         }
     }
 }
@@ -77,41 +81,49 @@ void polinomy::print()
     }
 }
 
-void polinomy::der(string var)
+polinomy polinomy::der(string var) const
 {
+    polinomy y;
+    y.alg=alg;
     for(int i=0;i<alg.size();i++)
     {
-        alg[i].der(var);
+        y.alg[i].der(var);
     }
     if(var!="c")
     {
         monomy z;
-        z.get(1,"c",1);
-        eraseMonomy(z);
+        z.get(1,"c,1");
+        y.eraseMonomy(z);
     }
+    y.oper();
+    return y;
 
 }
 
-void polinomy::integ(string var)
+polinomy polinomy::integ(string var) const
 {
+    polinomy y;
+    y.alg=alg;
     for(int i=0;i<alg.size();i++)
     {
-        alg[i].integ(var);
+        y.alg[i].integ(var);
     }
     if(alg.size()!=0)
     {
         monomy c;
-        c.get(1,"c",1);
-        alg.push_back(c);
+        c.get(1,"c,1");
+        y.alg.push_back(c);
     }
-    oper();
+    y.oper();
+    return y;
 
 }
 
-void polinomy::setMonomy(float num,string var,float exp)
+void polinomy::setMonomy(float num,string var)
 {
     monomy j;
-    j.get(num,var,exp);
+    j.get(num,var);
+
     alg.push_back(j);
     oper();
 }
