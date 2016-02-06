@@ -18,6 +18,8 @@ class polinomy
         polinomy operator/(const polinomy &);
         polinomy operator+(const polinomy &a);
         polinomy operator-(const polinomy &a);
+        polinomy infunc(string vars_val)const;
+
 
 
     private:
@@ -220,3 +222,15 @@ void polinomy::eraseMonomy(monomy &a)
         }
     }
 }
+
+polinomy polinomy::infunc(string a) const
+{
+    polinomy f;
+    for(int i=0;i<alg.size();i++)
+        f.alg.push_back(alg[i].infunc(a));
+    f.oper();
+    return f;
+
+}
+
+
