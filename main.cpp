@@ -3,8 +3,11 @@ int main()
 {
  polinomy a, b, c;
 
- a.setMonomy(1,"x,24*z,3");
- b.setMonomy(1,"x,25*z,1");
+ a.setMonomy(1,"x,2");
+ a.setMonomy(1,"z,1");
+ b.setMonomy(1,"x,2");
+ b.setMonomy(1,"z,1");
+
  cout<<"dy/dx[ ( ";
  a.print();
  cout<<" ) * (";
