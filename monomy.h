@@ -57,6 +57,7 @@ class monomy
         monomy pow_(float exp) const;
         monomy operator *(const monomy &other);
         monomy operator /(const monomy &other);
+        monomy infunc(string vars_vals)const;
 
     private:
         float num;
@@ -291,5 +292,30 @@ bool monomy::operator ==(monomy &other)
         return 1;
     }
     return 0;
+}
+//"var=value"
+monomy monomy::infunc(string a)const
+{
+    vector<string> var=split(a,',');
+    monomy f;
+    f.num=num;
+    f.exp=exp;
+    f.lit=lit;
+    for(int i=0;i<var.size();i++)
+    {
+        for(int j=0;j<f.lit.size();j++)
+        {
+            vector<string> val=split(var[i],'=');
+            if(val[0]==f.lit[j])
+            {
+                f.num*=pow(atof(strTochar(val[1])),f.exp[j]);
+                f.exp[j]=0;
+            }
+
+        }
+    }
+    f.oper();
+    return f;
+
 }
 
