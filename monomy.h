@@ -1,43 +1,31 @@
 #include<iostream>//Libreria principal
 #include<vector>//libreria de listas
-#include<string.h>
 #include<stdlib.h>//libreria de system();
 #include<fstream>
 #include<math.h>
 using namespace std;
-char * strtochr(string a)
-{
-    char * x= new char[a.length()+1];
-    strcpy(x, a.c_str());
-    return x;
-}
-
-
-char * _cls=strtochr("clear");
-double frac(double a,double b)
-{
-    return a/b;
-}
-
+char * _cls="clear";
 class polinomy;
 class monomy
 {
     public:
         monomy();
-        void get(double,string,double);
+        void get(float,string,float);
         void make(string tipo_num);
         void print();
+        void oper();
         void der(string var);
         void integ(string var);
         bool operator ==(monomy &other);
         monomy &operator =(const monomy &other) ;
-        monomy pow_(const double exp);
+        monomy MulexpforScalar(float exp) const;
         monomy operator *(const monomy &other);
+        monomy operator /(const monomy &other);
+
     private:
-        void oper();
-        double num;
+        float num;
         vector<string> lit;
-        vector<double> exp;
+        vector<float> exp;
         friend class polinomy;
 
 };
@@ -46,8 +34,7 @@ monomy::monomy()
 {
 
 }
-
-void monomy::get(double numer,string liter, double exps)
+void monomy::get(float numer,string liter, float exps)
 {
     num=numer;
     lit.push_back(liter);
@@ -57,14 +44,14 @@ void monomy::get(double numer,string liter, double exps)
 
 void monomy::make(string tipo_num)
 {
-    if("double"==tipo_num)
+    if("float"==tipo_num)
     {
         cout<<"Enter the number of your monomy: ";
         cin>>num;
     }else
     if("racional"==tipo_num)
     {
-        double a,b;
+        float a,b;
         cout<<"Entrar numerador: ";
         cin>>a;
         cout<<"Entrar denominador: ";
@@ -81,7 +68,7 @@ void monomy::make(string tipo_num)
         if(x=='x')
         {
             string aux1;
-            double aux2;
+            float aux2;
             system(_cls);
             cout<<"Diga el nombre de la variable nueva: ";
             cin>>aux1;
@@ -98,7 +85,7 @@ void monomy::make(string tipo_num)
 
 void monomy::print()
 {
-    if(num!=1||lit.size()==0)cout<<num;
+    if(num!=1)cout<<num;
     for(int i=0;i<lit.size();i++)
     {
            cout<<"["<<lit[i];
@@ -125,6 +112,7 @@ void monomy::oper()
                     lit.erase(lit.begin()+j);
                     j--;
                 }
+
         }
 
         }
@@ -173,17 +161,16 @@ void monomy::der(string var)
 
 
 
-monomy monomy::pow_(const double exps)
+ monomy monomy::MulexpforScalar(float exps)const
 {
-    monomy a;
-    a.num=pow(num,exps);
+    monomy x;
+    x=*this;
+    x.num=pow(num,exps);
     for(int i=0;i<lit.size();i++)
     {
-        double m=exp[i]*exps;
-        a.lit.push_back(lit[i]);
-        a.exp.push_back(m);
+        x.exp[i]=x.exp[i]*exps;
     }
-    return a;
+    return x;
 }
 
 monomy monomy::operator *(const monomy &other)
@@ -192,30 +179,44 @@ monomy monomy::operator *(const monomy &other)
    monomy t;
 
     t.num=num*other.num;
-    for(int i=0;i<other.lit.size();i++)
-    {
-        t.lit.push_back(other.lit[i]);
-        t.exp.push_back(other.exp[i]);
-    }
     for(int i=0;i<lit.size();i++)
     {
         t.lit.push_back(lit[i]);
         t.exp.push_back(exp[i]);
     }
+    for(int i=0;i<other.lit.size();i++)
+    {
+        t.lit.push_back(other.lit[i]);
+        t.exp.push_back(other.exp[i]);
+    }
+
+
+
     t.oper();
+
+    return  t;
+}
+monomy monomy::operator /(const monomy &other)
+{
+
+   monomy t;
+    t.num=num;
+    t.exp=exp;
+    t.lit=lit;
+    t=t * other.MulexpforScalar(-1);
+
     return  t;
 }
 
+
 void monomy::integ(string var)
 {
+
     for(int i=0;i<lit.size();i++)
     {
-        if(var==lit[i])
-        {
-            exp[i]=exp[i]+1;
-            num=num/exp[i];
-        }
-
+        if(var==lit[i]){
+        exp[i]=exp[i]+1;
+        num=num/exp[i];}
     }
     if(num!=0.0&&lit.size()==0)
     {
@@ -223,33 +224,19 @@ void monomy::integ(string var)
         exp.push_back(1.0);
     }
     oper();
+
+
 }
 
 bool monomy::operator ==(monomy &other)
 {
-    //ok
-    oper();
-    other.oper();
     if(lit.size()==other.lit.size())
     {
-        int p[lit.size()];
-
         for(int i=0;i<lit.size();i++)
         {
-           for(int j=0;j<other.lit.size();j++)
-           {
-               if(lit[i]==other.lit[j])
-               {
-                   p[i]+=1;
-               }
-           }
+            if(lit[i]!=other.lit[i])return 0;
+            if(exp[i]!=other.exp[i])return 0;
         }
-        int s=0;
-        for(int i=0;i<lit.size();i++)
-        {
-            s+=p[i];
-        }
-        if(s!=lit.size())return 0;
         return 1;
     }
     return 0;
