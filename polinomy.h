@@ -19,7 +19,8 @@ class polinomy
         polinomy operator+(const polinomy &a);
         polinomy operator-(const polinomy &a);
         polinomy infunc(string vars_val)const;
-
+        bool existsVar(const string &a);
+        polinomy pow_(float exp);
 
 
     private:
@@ -102,15 +103,41 @@ polinomy polinomy::der(string var) const
 
 }
 
+bool polinomy::existsVar(const string & var)
+{
+    for(int i=0;i<alg.size();i++)
+    {
+        if(alg[i].existVar(var))
+        {
+            return true;
+        }
+    }
+    return 0;
+}
+
 polinomy polinomy::integ(string var) const
 {
     polinomy y;
     y.alg=alg;
-    for(int i=0;i<alg.size();i++)
+        monomy c,x;
+        c.get(1,"c,1");
+        x.get(1,var+",1");
+    vector<string> l=split(var,'=');
+
+    if(l.size()==2)
     {
+        if(l[1]!="c")y.eraseMonomy(c);
+
+    }else y.eraseMonomy(c);
+
+    for(int i=0;i<y.alg.size();i++)
+    {
+
         y.alg[i].integ(var);
+
     }
-    if(alg.size()!=0)
+    if(l.size()==0)if(! y.existsVar(var))y.alg.push_back(x);
+    if(y.alg.size()!=0)
     {
         monomy c;
         c.get(1,"c,1");
@@ -231,6 +258,17 @@ polinomy polinomy::infunc(string a) const
     f.oper();
     return f;
 
+}
+
+polinomy polinomy::pow_(float exp)
+{
+    polinomy y;
+    y.alg=alg;
+    for(int i=0;i<y.alg.size();i++)
+    {
+        y.alg[i]=y.alg[i].pow_(exp);
+    }
+    return y;
 }
 
 
