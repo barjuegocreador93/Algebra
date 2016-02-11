@@ -52,7 +52,8 @@ class monomy
         void oper();
         void der(string var);
         void integ(string var);
-        bool operator ==(monomy &other);
+        bool operator ==(const monomy &other)const;
+        bool existVar(string other)const;
         monomy &operator =(const monomy &other) ;
         monomy pow_(float exp) const;
         monomy operator *(const monomy &other);
@@ -263,14 +264,26 @@ monomy monomy::operator /(const monomy &other)
 
 void monomy::integ(string var)
 {
-
+    vector<string> l=split(var,'=');
     for(int i=0;i<lit.size();i++)
     {
-        if(var==lit[i]){
+
+        if(l.size()>0)if(l[1]==lit[i])var=lit[i]=l[0];
+        if(var==lit[i]&&exp[i]!=-1){
         exp[i]=exp[i]+1;
         num=num/exp[i];}
+        if(exp[i]==-1)
+            {
+                lit[i]="ln_"+lit[i];
+                exp[i]=1;
+            }
     }
-    if(num!=0.0&&lit.size()==0)
+    if(num!=0.0&&lit.size()==0&&l.size()==1)
+    {
+        lit.push_back(var);
+        exp.push_back(1.0);
+    }
+    if(l.size()==1&&!existVar(var))
     {
         lit.push_back(var);
         exp.push_back(1.0);
@@ -280,8 +293,9 @@ void monomy::integ(string var)
 
 }
 
-bool monomy::operator ==(monomy &other)
+bool monomy::operator ==(const monomy &other)const
 {
+
     if(lit.size()==other.lit.size())
     {
         for(int i=0;i<lit.size();i++)
@@ -293,6 +307,20 @@ bool monomy::operator ==(monomy &other)
     }
     return 0;
 }
+
+bool monomy::existVar( string other)const
+{
+
+
+        for(int i=0;i<lit.size();i++)
+        {
+            if(lit[i]==other)return 1;
+
+        }
+
+    return 0;
+}
+
 //"var=value"
 monomy monomy::infunc(string a)const
 {
